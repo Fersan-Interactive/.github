@@ -1,0 +1,39 @@
+# Checks that a pull request title is a Conventional Commit header (CONTRIBUTING.md §3 and §4). With squash merges the
+# title becomes the commit subject on main. It runs here for this repository's own pull requests; another repository
+# requires it through the organisation ruleset or calls it as a reusable workflow.
+name: Pull request title
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  title:
+    name: pull request title
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Check the title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          types='build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test'
+          header="^(${types})(\([a-z0-9]+([._/-][a-z0-9]+)*\))?!?: [^[:space:]](.*[^.[:space:]])?$"
+          problem=''
+          if [ -z "$TITLE" ]; then
+            problem='this event carries no pull request title'
+          elif [ "${#TITLE}" -gt 100 ]; then
+            problem="the title has ${#TITLE} characters; the limit is 100"
+          elif ! [[ $TITLE =~ $header ]]; then
+            problem="expected <type>(<scope>)!: <subject>, with a type among ${types//|/, }, a lowercase scope and no final period"
+          fi
+          if [ -n "$problem" ]; then
+            echo "::error title=Pull request title::${problem}. Title: ${TITLE}"
+            echo "Examples: 'fix(contact): keep the copy button inside the card', 'ci: deploy each pull request to a preview channel'."
+            echo "Guide: https://github.com/Fersan-Interactive/.github/blob/main/CONTRIBUTING.md#3-commits"
+            exit 1
+          fi
+          echo "Conventional Commit header: ${TITLE}"
