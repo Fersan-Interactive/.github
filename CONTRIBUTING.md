@@ -74,6 +74,9 @@ Trunk-based development: `main` is the only long-lived branch and is always rele
   - `BREAKING CHANGE: <what breaks and how to migrate>`, or a `!` before the colon.
   - `Refs: #<issue>`.
   - `Co-authored-by: Name <email>` for every co-author, AI agents included.
+- **Author identity:** commit with your Fersan Interactive account and address (`name@fersaninteractive.com`), set
+  as Git's `user.name` and `user.email`. A personal account or address never appears in a commit, a trailer or a pull
+  request; bots keep their own identity.
 - **Breaking change:** anything that breaks a consumer, such as a public API or package contract, a save or data
   format, or a public URL removed without a redirect.
 - **Revert:** `revert: <header of the reverted commit>`, with `This reverts commit <sha>.` in the body.
