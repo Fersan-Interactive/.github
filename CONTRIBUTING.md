@@ -115,22 +115,20 @@ ci: deploy each pull request to a preview channel
 
 The same labels exist in every repository; new repositories get them as organisation defaults.
 
-| Label           | Group    | Use                                                                           |
-| --------------- | -------- | ----------------------------------------------------------------------------- |
-| `enhancement`   | Kind     | `feat`: a new or improved capability                                          |
-| `bug`           | Kind     | `fix`: a defect                                                               |
-| `documentation` | Kind     | `docs`: documentation only                                                    |
-| `maintenance`   | Kind     | `refactor`, `perf`, `test`, `style`, `chore`: upkeep with no new capability   |
-| `ci`            | Kind     | `ci`, `build`: pipelines, build and repository tooling                        |
-| `dependencies`  | Kind     | Dependency updates, including those from Dependabot                           |
-| `breaking`      | Impact   | Contains a breaking change (§3); a shipped artefact needs a new major version |
-| `accessibility` | Area     | Affects access for people with disabilities                                   |
-| `needs owner`   | Workflow | Waits on a product owner's decision, acceptance or account action             |
-| `blocked`       | Workflow | Waits on something outside the team, such as a provider or a store review     |
-| `duplicate`     | Triage   | Already covered by another issue or pull request                              |
-| `invalid`       | Triage   | Not a valid report or change, such as one that cannot be reproduced           |
-| `question`      | Triage   | A question, answered without a change                                         |
-| `wontfix`       | Triage   | Valid, but will not be done; the reason goes in a comment                     |
+| Label           | Group    | Description                                                                         |
+| --------------- | -------- | ----------------------------------------------------------------------------------- |
+| `enhancement`   | Kind     | feat: a new or improved capability                                                  |
+| `bug`           | Kind     | fix: a defect                                                                       |
+| `documentation` | Kind     | docs: documentation only                                                            |
+| `maintenance`   | Kind     | refactor, perf, test, style, chore: upkeep with no new capability                   |
+| `ci`            | Kind     | ci, build: pipelines, build and repository tooling                                  |
+| `dependencies`  | Kind     | build(deps), ci(deps): dependency updates, including dependabot's                   |
+| `breaking`      | Impact   | type!: a breaking change; a shipped artefact needs a new major version              |
+| `accessibility` | Area     | area: affects access for people with disabilities                                   |
+| `needs owner`   | Workflow | workflow: waits on a product owner's decision, acceptance or account action         |
+| `blocked`       | Workflow | workflow: waits on something outside the team, such as a provider or a store review |
+| `duplicate`     | Triage   | triage: already covered by another issue or pull request                            |
+| `wontfix`       | Triage   | triage: valid, but will not be done; the reason goes in a comment                   |
 
 A `revert` takes the kind of the change it undoes.
 
