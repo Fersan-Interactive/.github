@@ -123,7 +123,7 @@ The same labels exist in every repository; new repositories get them as organisa
 | `maintenance`   | Kind     | refactor, perf, test, style, chore: upkeep with no new capability                   |
 | `ci`            | Kind     | ci, build: pipelines, build and repository tooling                                  |
 | `dependencies`  | Kind     | build(deps), ci(deps): dependency updates, including dependabot's                   |
-| `breaking`      | Impact   | type!: a breaking change; a shipped artefact needs a new major version              |
+| `breaking`      | Impact   | \<type>!: a breaking change; a shipped artefact needs a new major version           |
 | `accessibility` | Area     | area: affects access for people with disabilities                                   |
 | `needs owner`   | Workflow | workflow: waits on a product owner's decision, acceptance or account action         |
 | `blocked`       | Workflow | workflow: waits on something outside the team, such as a provider or a store review |
