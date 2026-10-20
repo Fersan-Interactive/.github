@@ -20,9 +20,9 @@ restate this guide.
 - **Name:** lowercase kebab-case, `<product>-<role>`. The roles are `unity` (game client), `backend` (services),
   `shared` (code shared between client and services) and `web` (sites). Institutional repositories use `corporate-`
   in place of a product. A new kind of repository takes a short noun for its role.
-- **Default branch:** `main`. An organisation ruleset protects it in every repository: changes arrive only through
-  pull requests merged by squash, history stays linear, and the branch cannot be force-pushed or deleted. Each
-  repository adds its own required checks.
+- **Default branch:** `main`. The organisation ruleset `main` protects it in every repository: changes arrive only
+  through pull requests merged by squash, the `pull request title` check must pass, history stays linear, and the
+  branch cannot be force-pushed or deleted. Each repository adds its own required checks.
 - **Entry points:** a README that says what the repository is and how to run, verify and deliver it, and a home for
   its decisions (ADRs or a decision register).
 - **Large binaries** (art, audio, builds) go through Git LFS or an artefact store, never as plain Git objects.
