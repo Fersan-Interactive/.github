@@ -91,7 +91,7 @@ ci: deploy each pull request to a preview channel
 1. **Open** as a draft while the work is in progress, and mark it ready once the checks pass and the description is
    complete.
 2. **Title:** a Conventional Commit header. The squash merge makes it the commit subject on `main`, and the
-   `pull request title` check enforces the format.
+   `pull request title` check enforces the format. After correcting a title, re-run that check or push again.
 3. **Description:** fill in the [template](pull_request_template.md).
    - What changes and why.
    - How it was verified, and what was not.

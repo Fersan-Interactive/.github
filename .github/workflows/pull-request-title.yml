@@ -1,6 +1,6 @@
 # Checks that a pull request title is a Conventional Commit header (CONTRIBUTING.md §3 and §4). With squash merges the
 # title becomes the commit subject on main. It runs here for this repository's own pull requests; another repository
-# requires it through the organisation ruleset or calls it as a reusable workflow.
+# requires it through the organisation ruleset or calls it as a reusable workflow, granting `pull-requests: read`.
 name: Pull request title
 
 on:
@@ -15,11 +15,20 @@ jobs:
     name: pull request title
     runs-on: ubuntu-24.04
     timeout-minutes: 2
+    permissions:
+      pull-requests: read
     steps:
       - name: Check the title
         env:
-          TITLE: ${{ github.event.pull_request.title }}
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          # The current title rather than the event's: a ruleset runs this workflow only when a pull request is opened,
+          # reopened or pushed to, so after a title edit a re-run of this check must read the new title.
+          TITLE=''
+          if [ -n "$NUMBER" ]; then
+            TITLE=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$NUMBER" --jq .title)
+          fi
           types='build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test'
           header="^(${types})(\([a-z0-9]+([._/-][a-z0-9]+)*\))?!?: [^[:space:]](.*[^.[:space:]])?$"
           problem=''
