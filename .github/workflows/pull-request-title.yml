@@ -1,12 +1,11 @@
 # Checks that a pull request title is a Conventional Commit header (CONTRIBUTING.md §3 and §4). With squash merges the
-# title becomes the commit subject on main. It runs here for this repository's own pull requests; another repository
-# requires it through the organisation ruleset or calls it as a reusable workflow, granting `pull-requests: read`.
+# title becomes the commit subject on main. The organisation ruleset `main` requires it on the default branch of every
+# repository, which needs the pull_request trigger; that trigger also runs it for this repository's own pull requests.
 name: Pull request title
 
 on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
-  workflow_call:
 
 permissions: {}
 
