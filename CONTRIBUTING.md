@@ -127,9 +127,12 @@ The same labels exist in every repository; new repositories get them as organisa
 | `accessibility` | Area     | Affects access for people with disabilities                                   |
 | `needs owner`   | Workflow | Waits on a product owner's decision, acceptance or account action             |
 | `blocked`       | Workflow | Waits on something outside the team, such as a provider or a store review     |
+| `duplicate`     | Triage   | Already covered by another issue or pull request                              |
+| `invalid`       | Triage   | Not a valid report or change, such as one that cannot be reproduced           |
+| `question`      | Triage   | A question, answered without a change                                         |
+| `wontfix`       | Triage   | Valid, but will not be done; the reason goes in a comment                     |
 
-A `revert` takes the kind of the change it undoes. GitHub's other default labels (`duplicate`, `good first issue`,
-`help wanted`, `invalid`, `question`, `wontfix`) remain for issue triage.
+A `revert` takes the kind of the change it undoes.
 
 ## 6. CI/CD
 
@@ -150,9 +153,9 @@ A `revert` takes the kind of the change it undoes. GitHub's other default labels
 
 ## 7. Versions and releases
 
-| Repository kind                                         | Release identity                                                                                                                                                                                                                                                     | Rollback                                                                     |
-| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Continuously delivered: sites and services              | The commit on `main`. Each merge is a release, delivered and recorded as a deployment of its environment. No version number unless a consumer needs one, such as a public API version                                                                               | Redeploy the previous verified version, then fix forward through `main`      |
+| Repository kind                                         | Release identity                                                                                                                                                                                                                                                          | Rollback                                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Continuously delivered: sites and services              | The commit on `main`. Each merge is a release, delivered and recorded as a deployment of its environment. No version number unless a consumer needs one, such as a public API version                                                                                     | Redeploy the previous verified version, then fix forward through `main`  |
 | Shipped artefacts: game builds, packages, SDKs, clients | [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html). An annotated tag `vX.Y.Z` on the released commit of `main`, a [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/) entry and a GitHub Release from the tag. Store build numbers only increase | A new patch release; a published version or tag is never moved or reused |
 
 `feat` maps to a minor version and `fix` to a patch, and a breaking change maps to a major version. Before `1.0.0`,
